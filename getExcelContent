@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+import argparse
+import sys
+import re
+import os
+import datetime
+import xlrd
+
+from bson import Binary, Code
+from bson.json_util import dumps
+
+from json import loads as jsonLoads
+from json import dumps as jsonDumps
+
+if __name__ == '__main__':
+
+    PARSER = argparse.ArgumentParser(description='''
+        get excel sheet content
+    ''')
+    
+    PARSER.add_argument('-f', '--filename', help='filename of the excel sheet')
+
+    args = PARSER.parse_args()
+
+    if not args.filename:
+        raise Exception("no excel file given.")
+
+    if not os.path.isfile(args.filename):
+        raise Exception("file not found.")
+    
+    book = xlrd.open_workbook(args.filename)
+    sh = book.sheet_by_index(0)
+    for row in sh.get_rows():
+        currentRow = [ x.value for x in row  ]
+        print(currentRow)
