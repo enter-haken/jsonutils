@@ -9,7 +9,7 @@ The goal of the `jsonutils` project is to provide console centric json tools
 
 
 ```
-usage: getExcelContent [-h] [-f FILENAME]
+usage: getExcelContent [-h] [-f FILENAME] [-s SEPERATOR] [-1] [-t]
 
 get excel sheet content
 
@@ -17,6 +17,10 @@ optional arguments:
   -h, --help            show this help message and exit
   -f FILENAME, --filename FILENAME
                         filename of the excel sheet
+  -s SEPERATOR, --seperator SEPERATOR
+                        field seperator
+  -1, --firstLine       show only first line
+  -t, --tail            only content after fist line
 ```
 
 ### Contact

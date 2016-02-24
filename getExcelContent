@@ -19,6 +19,10 @@ if __name__ == '__main__':
     ''')
     
     PARSER.add_argument('-f', '--filename', help='filename of the excel sheet')
+    PARSER.add_argument('-s', '--seperator', default=" - ", help='field seperator')
+    
+    PARSER.add_argument('-1', '--firstLine', action="store_true", help='show only first line')
+    PARSER.add_argument('-t', '--tail', action="store_true", help='only content after fist line')
 
     args = PARSER.parse_args()
 
@@ -30,6 +34,12 @@ if __name__ == '__main__':
     
     book = xlrd.open_workbook(args.filename)
     sh = book.sheet_by_index(0)
-    for row in sh.get_rows():
-        currentRow = [ x.value for x in row  ]
-        print(currentRow)
+    rows = list(sh.get_rows())
+
+    if args.tail:
+        rows = rows[1:]
+
+    for row in rows:
+        print (args.seperator.join([ str(x.value) for x in row  ])) 
+        if args.firstLine:
+            sys.exit(0)
