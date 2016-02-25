@@ -5,7 +5,7 @@ The goal of the `jsonutils` project is to provide console centric json tools
 
 ### Functions
 
-#### getExcelSheet
+#### getExcelContent
 
 
 ```
